@@ -13,10 +13,12 @@ class App extends React.Component {
       flag: "",
       population: "",
       region: "",
+      inputValue:"",
     };
   }
-
+  
   getCountry=(country)=>{
+    country = this.state.inputValue
     fetch(`https://restcountries.eu/rest/v2/name/${country}`)
     .then(res => res.json())
     .then(countries => {
@@ -28,16 +30,21 @@ class App extends React.Component {
         region: countries[0].region,
       })
     })
-  }
+    .catch(error => alert("error"))
+  };
+
+  tkt=(e)=>{
+    this.setState({
+      inputValue : e.target.value
+    })
+  };
 
   render() {
     return (
     <div className="App"> 
       <header className="App-header">
         <div className="row">
-          <Button onClick={(e)=> this.getCountry("france")}>France</Button>
-          <Button onClick={(e)=> this.getCountry("algeria")}>Algerie</Button>
-          <Button onClick={(e)=> this.getCountry("Tunisia")}>Tunisie</Button>
+        <Button onChange={this.tkt} onClick={(e)=> this.getCountry(`${this.state.inputValue}`)}>France</Button>
         </div>
         <div className="car">
           <Card 

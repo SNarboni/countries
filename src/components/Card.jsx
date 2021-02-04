@@ -4,7 +4,7 @@ export default class Card extends Component {
     render() {
         return (
                 <div className="card mt-5">
-                    <img src={this.props.flag} className="card-img-top"/>
+                    <img src={this.props.flag} className="card-img-top" alt="drapeau de pays"/>
                     <div className="card-body">
                         <div className="text-left">
                             <h3 className="card-title">Country : {this.props.name}</h3>
